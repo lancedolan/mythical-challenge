@@ -14,27 +14,21 @@ import java.util.*;
  */
 
 public class Solution {
+
     public static void main(String[] args) {
-        try {
-            System.out.println("column heading for 1: " + convertIntegerToColumnName( 1 ) );
-            System.out.println("column heading for 2: " + convertIntegerToColumnName( 2 ) );
-            System.out.println("column heading for 16: " + convertIntegerToColumnName( 16 ) );
-            System.out.println("column heading for 81: " + convertIntegerToColumnName( 81 ) );
-            System.out.println("column heading for 107: " + convertIntegerToColumnName( 107 ) );
-            System.out.println("column heading for 585: " + convertIntegerToColumnName( 585 ) );
-            System.out.println("column heading for 676: " + convertIntegerToColumnName( 676 ) );
-            System.out.println("column heading for 677: " + convertIntegerToColumnName( 677 ) );
-            System.out.println("column heading for 701: " + convertIntegerToColumnName( 701 ) );
-            System.out.println("column heading for 702: " + convertIntegerToColumnName( 702 ) );
-            System.out.println("column heading for 703: " + convertIntegerToColumnName( 703 ) );
-            System.out.println("column heading for 704: " + convertIntegerToColumnName( 704 ) );
-            System.out.println("column heading for 17603: " + convertIntegerToColumnName( 17603 ) );
-        } catch (Exception e) {
-            System.out.println("Exception while running tests");
-            e.printStackTrace();
-        }
-
-
+        System.out.println("column heading for 1: " + convertIntegerToColumnName( 1 ) );
+        System.out.println("column heading for 2: " + convertIntegerToColumnName( 2 ) );
+        System.out.println("column heading for 16: " + convertIntegerToColumnName( 16 ) );
+        System.out.println("column heading for 81: " + convertIntegerToColumnName( 81 ) );
+        System.out.println("column heading for 107: " + convertIntegerToColumnName( 107 ) );
+        System.out.println("column heading for 585: " + convertIntegerToColumnName( 585 ) );
+        System.out.println("column heading for 676: " + convertIntegerToColumnName( 676 ) );
+        System.out.println("column heading for 677: " + convertIntegerToColumnName( 677 ) );
+        System.out.println("column heading for 701: " + convertIntegerToColumnName( 701 ) );
+        System.out.println("column heading for 702: " + convertIntegerToColumnName( 702 ) );
+        System.out.println("column heading for 703: " + convertIntegerToColumnName( 703 ) );
+        System.out.println("column heading for 704: " + convertIntegerToColumnName( 704 ) );
+        System.out.println("column heading for 17603: " + convertIntegerToColumnName( 17603 ) );
 
         //column heading for 1: A
         //column heading for 2: B
@@ -51,11 +45,8 @@ public class Solution {
         //column heading for 17603: ZAA
     }
 
-    // Lance's scratch notes...
-    //  1  2   3    4
-    //  1 26  676  17576 sub
-    //  1 27  703  18279 div
-
+    // Total Runtime: O(n)
+    // Total Space: O(n)
     public static String convertIntegerToColumnName(int number) {
 
         /**
@@ -65,6 +56,8 @@ public class Solution {
         List<Integer> numericRepresentation = new ArrayList<>();
 
         // get all initial As in place while also learning character depth to work backward from
+        // Runtime: O(n)
+        // Space: O(n)
         for(int i = 0; i < Integer.MAX_VALUE; i++) {
             final int base = (int) Math.pow(26, i);
             if (number-base < 0) {
@@ -76,6 +69,8 @@ public class Solution {
 
         // Populate numericRepresentation; Determine largest possible number at each base, beginning with largest.
         // Note: Our lexicographic representation orders by smallest numbers to the right.
+        // Runtime: O(n)
+        // Space: O(1) - Integers already initialized will be incremented. More memory will not be allocated.
         for(int i = numericRepresentation.size()-1; i > -1; i--) {
             final int base = (int) Math.pow(26, i);
             if (number >= base) {
@@ -87,6 +82,8 @@ public class Solution {
             }
         }
 
+        // Runtime: O(n)
+        // Space: O(n)
         return toLexicographic(numericRepresentation);
     }
 
